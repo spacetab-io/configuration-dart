@@ -25,8 +25,10 @@ void main() {
     });
 
     test('loaded configuration and parsed', () {
-      final Configuration conf =
-          Configuration(path: './test/configuration_spec', stage: 'test');
+      final Configuration conf = Configuration(
+        path: './test/configuration_spec',
+        stage: 'test',
+      );
       conf.load();
 
       final Map expected = {
@@ -56,6 +58,34 @@ void main() {
       expect(conf.all, equals(expected));
       expect(conf.get('hotelbook_params.area_mapping.KRK'), equals('Krakow'));
       expect(conf.get('default_list'), equals(['bar', 'baz']));
+    });
+
+    test('Loading symlinks configs', () {
+      final Configuration conf = Configuration(
+        path: './test/configuration_symlinks',
+        stage: 'test',
+      );
+      conf.load();
+
+      final Map expected = {
+        'redis': {
+          'hostname': '127.0.0.1',
+          'password': '',
+          'database': 0,
+          'port': 6379,
+        },
+        'debug': true,
+        'log': {
+          'level': 'wa"rn',
+          'format': "js'on",
+        },
+        'host': 'localhost',
+        'port': 8080,
+      };
+
+      expect(conf.all, equals(expected));
+      expect(conf.get('redis.port'), equals(6379));
+      expect(conf.get('debug'), isTrue);
     });
   });
 }
