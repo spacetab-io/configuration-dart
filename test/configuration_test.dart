@@ -24,7 +24,7 @@ void main() {
       expect(conf.stage, equals('defaults'));
     });
 
-    test('loaded configuration and parsed', () {
+    test('Loaded configuration and parsed', () {
       final Configuration conf = Configuration(
         path: './test/configuration_spec',
         stage: 'test',
@@ -60,7 +60,7 @@ void main() {
       expect(conf.get('default_list'), equals(['bar', 'baz']));
     });
 
-    test('Loading symlinks configs', () {
+    test('Loaded symlinks configs', () {
       final Configuration conf = Configuration(
         path: './test/configuration_symlinks',
         stage: 'test',
