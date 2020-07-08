@@ -2,16 +2,16 @@ library configuration_dart;
 
 import 'dart:io';
 
-import 'package:configuration/logger_interface.dart';
-import 'package:configuration/null_logger.dart';
 import 'package:merge_map/merge_map.dart';
 import 'package:yaml/yaml.dart';
+import 'package:configuration/logger_interface.dart';
+import 'package:configuration/null_logger.dart';
 
 class Configuration {
   static const String _CONFIG_PATH = "CONFIG_PATH";
   static const String _DEFAULT_CONFIG_PATH = "./configuration";
   static const String _STAGE = "STAGE";
-  static const String _DEFAULT_STAGE = "local";
+  static const String _DEFAULT_STAGE = "defaults";
 
   final String path;
   final String stage;
@@ -39,10 +39,12 @@ class Configuration {
     logger.info('$_STAGE = $stage');
 
     try {
-      _config = Configuration._mergeRecursive(
-        _parseConfiguration(),
-        _parseConfiguration(stage),
-      );
+      _config = stage == _DEFAULT_STAGE
+          ? _parseConfiguration(stage)
+          : Configuration._mergeRecursive(
+              _parseConfiguration(),
+              _parseConfiguration(stage),
+            );
     } catch (error) {
       logger.error(error.toString());
       throw error;
@@ -62,8 +64,7 @@ class Configuration {
     final List<FileSystemEntity> _folderFiles = _folder.listSync().toList();
     final List<File> _configurationFiles = _folderFiles
         .where((FileSystemEntity file) {
-          return file is File &&
-              (file.path.contains(".yaml") || file.path.contains(".yml"));
+          return file is File && file.path.contains(".yaml");
         })
         .map((FileSystemEntity file) => file as File)
         .toList();

@@ -9,7 +9,7 @@ Import in your `pubscpec.yaml` configuration file
 
 ```yaml
 dependencies:
-  auth_flutter_login:
+  configuration:
       git:
         url: https://github.com/spacetab-io/configuration-dart.git
 ```
