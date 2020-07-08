@@ -1,5 +1,4 @@
 version: 2
-
 jobs:
   build:
     docker:
@@ -10,17 +9,21 @@ jobs:
     steps:
       - checkout
       - run:
-        name: "Run pub get"
-        command: |
-          pub get
+          name: "Run pub get"
+          command: |
+            pub get
       - run:
-        name: "Run tests"
-        command: |
-          pub run test ./test/configuration_test.dart
+          name: "Run test"
+          command: |
+            pub run test ./test/configuration_test.dart
 
 
 workflows:
   version: 2
-  total:
+  build:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only:
+                - master
