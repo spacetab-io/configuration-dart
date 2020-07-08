@@ -19,7 +19,7 @@ dependencies:
 ## Usage
 
 By default path to configuration directory and application stage
-loading from `./configuration` with `local` stage.
+loading from `./configuration` with `defaults` stage.
  
 Code example:
 
