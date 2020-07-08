@@ -1,6 +1,8 @@
 Dart language configuration module
 ----------------------------------
 
+[![CircleCI](https://circleci.com/gh/spacetab-io/static-server-php/tree/master.svg?style=svg)](https://circleci.com/gh/spacetab-io/configuration-dart/tree/master)
+
 Configuration module for applications written on Dart. Preserves [corporate standards for services configuration](https://confluence.teamc.io/pages/viewpage.action?pageId=4227704).
 
 ## Installation

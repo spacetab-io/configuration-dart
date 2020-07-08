@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:test/test.dart';
 import 'package:configuration/configuration.dart';
 
@@ -23,7 +21,7 @@ void main() {
       final Configuration conf = Configuration();
 
       expect(conf.path, equals('./configuration'));
-      expect(conf.stage, equals('local'));
+      expect(conf.stage, equals('defaults'));
     });
 
     test('loaded configuration and parsed', () {
