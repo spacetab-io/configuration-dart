@@ -1,0 +1,16 @@
+name: configuration
+description: Configuration module for Dart that supports multiple application stages like dev, prod or something else and overrides the defaults stage.
+version: 0.0.1
+author: Spacetab
+homepage: https://github.com/spacetab-io/configuration-dart
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  yaml: ^2.2.1
+  merge_map: ^1.0.2
+
+dev_dependencies:
+  test: ^1.15.2
+
