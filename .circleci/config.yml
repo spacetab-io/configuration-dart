@@ -1,4 +1,5 @@
-version: 2.1
+version: 2
+
 jobs:
   build:
     docker:
@@ -9,16 +10,17 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Run pub get
-        command: pub get
+        name: "Run pub get"
+        command: |
+          pub get
       - run:
-        name: tests
+        name: "Run tests"
         command: |
           pub run test ./test/configuration_test.dart
 
 
 workflows:
-  version: 2.1
+  version: 2
   total:
     jobs:
       - build
